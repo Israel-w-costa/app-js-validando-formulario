@@ -1,13 +1,15 @@
-import eUmCpf  from "./cpfValidacao.js";
+import ehUmCPF  from "./cpfValidacao.js";
 import ehMaiorDeIdade from "./idadeValidacao.js";
 
 const campoFormulario = document.querySelectorAll ('[required]')
 
 campoFormulario.forEach ((campo) => {
-    campo.addEventListener ('blur',() => vereficavalidacao (campo))
+    campo.addEventListener ('blur',() => verificaCampo (campo))
+    campo.addEventListener ('invalid',evento => evento.preventDefault()) 
+
 })
 
-const tiposDeErros = [
+const tiposDeErro = [
     'valueMissing',
     'typeMismatch',
     'patternMismatch',
@@ -46,16 +48,32 @@ const mensagens = {
     }
 }
 
-function vereficavalidacao (campo) {
-   if (campo.name == "cpf" && campo.value.length >=11) {
-    eUmCpf (campo)
+
+function verificaCampo (campo) {
+    let mensagem = ""
+    campo.setCustomValidity("")
+   
+    if (campo.name == "cpf" && campo.value.length >=11) {
+        ehUmCPF (campo)
    }
 
    if (campo.name == 'aniversario' && campo.value != "") {
     ehMaiorDeIdade (campo)
    }
+
+   tiposDeErro.forEach (erro => {
+    if (campo.validity [erro]) {
+        mensagem = mensagens [campo.name] [erro]
+        console.log (mensagem)
+    }
+   })
+   
+   const mensagemErro = campo.parentNode.querySelector ('.mensagem-erro')
+   const validaInput = campo.checkValidity ()
+
+   if (!validaInput) {
+    mensagemErro.textContent = mensagem
+   } else {
+    mensagemErro.textContent = "";
 }
-
-
-
-
+}
