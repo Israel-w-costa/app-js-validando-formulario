@@ -2,6 +2,22 @@ import ehUmCPF  from "./cpfValidacao.js";
 import ehMaiorDeIdade from "./idadeValidacao.js";
 
 const campoFormulario = document.querySelectorAll ('[required]')
+const formulario = document.querySelector ('[data-formulario]')
+
+formulario.addEventListener ('submit', (evento) => {
+    evento.preventDefault ()
+
+    const listaDeReposta = {
+        'nome' : evento.target.elements ['nome'].value,
+        'email' : evento.target.elements ['email'].value,
+        'rg' : evento.target.elements ['rg'].value,
+        'cpf' : evento.target.elements ['cpf'].value,
+        'aniversario' : evento.target.elements ['aniversario'].value,
+    }
+    console.log (listaDeRepostas)
+
+    localStorage.setItem ('cadastrar', JSON.stringify (listaDeReposta))
+})
 
 campoFormulario.forEach ((campo) => {
     campo.addEventListener ('blur',() => verificaCampo (campo))

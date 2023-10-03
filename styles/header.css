@@ -13,11 +13,15 @@
     margin: 0 2em;
 }
 
+.cabecalho__logo-link {
+    text-decoration: none;
+}
+
 .cabecalho__logo-inicio {
     font-family: var(--fonte-logo);
     font-size: 28px;
     font-weight: 700;
-    color: var(--azul-claro);
+    color: rgb(0, 191, 255);
 }
 
 .cabecalho__logo-final {
@@ -42,8 +46,9 @@
 }
 
 .cabecalho-lista__link {
-    color: var(--preto);
+    color: black;
 }
+
 
 .cabecalho-lista__item-botao {
     font-weight: 600;
