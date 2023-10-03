@@ -5,7 +5,7 @@ const campoFormulario = document.querySelectorAll ('[required]')
 const formulario = document.querySelector ('[data-formulario]')
 
 formulario.addEventListener ('submit', (evento) => {
-    evento.preventDefault ()
+    evento.preventDefault () 
 
     const listaDeReposta = {
         'nome' : evento.target.elements ['nome'].value,
@@ -14,9 +14,10 @@ formulario.addEventListener ('submit', (evento) => {
         'cpf' : evento.target.elements ['cpf'].value,
         'aniversario' : evento.target.elements ['aniversario'].value,
     }
-    console.log (listaDeRepostas)
 
     localStorage.setItem ('cadastrar', JSON.stringify (listaDeReposta))
+    window.location.href = "./abrir-conta-form-2.html";
+
 })
 
 campoFormulario.forEach ((campo) => {
